@@ -28,7 +28,9 @@ public class Wallet {
     @Max(3)
     private Integer priority;//set priority for high low medium
     private Double currentBalance;
-
+    @OneToMany(cascade = CascadeType.REFRESH,fetch = FetchType.LAZY,mappedBy = "wallet",orphanRemoval = true)
+    @JsonIgnore
+    private List<Transaction> transactions;
     @PrePersist
     public void setBalance() {
         this.currentBalance = new Double(0);
