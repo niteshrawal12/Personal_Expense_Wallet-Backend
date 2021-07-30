@@ -8,7 +8,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,9 +28,6 @@ public class Wallet {
     @Max(3)
     private Integer priority;//set priority for high low medium
     private Double currentBalance;
-    @OneToMany(cascade = CascadeType.REFRESH,fetch = FetchType.LAZY,mappedBy = "wallet",orphanRemoval = true)
-    @JsonIgnore
-    private List<Transaction> transactions;
     @PrePersist
     public void setBalance() {
         this.currentBalance = new Double(0);
